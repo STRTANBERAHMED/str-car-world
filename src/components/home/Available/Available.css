@@ -1,0 +1,7 @@
+.available{
+    background-color: gainsboro;
+}
+.count :hover{
+    background-color: black;
+    color: white;
+}
