@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import { Button } from 'react-bootstrap';
+import './Register.css';
 
 const Register = () => {
     const [loginData, setLoginData] = useState({})
-
+    const history = useHistory();
     const { user, registerUser, isLoading, authError } = useAuth();
 
-    const handleOnChange = e => {
+    const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
-        console.log(newLoginData)
         setLoginData(newLoginData);
     }
     const handleLoginSubmit = e => {
@@ -20,22 +21,24 @@ const Register = () => {
             alert('Your password did not match')
             return
         }
-        registerUser(loginData.email, loginData.password);
+        registerUser(loginData.email, loginData.password, loginData.name, history);
         e.preventDefault();
     }
 
     return (
-        <div>
+        <div className="register">
             <h1>Please Register</h1>
             {!isLoading && <form onSubmit={handleLoginSubmit}>
-                <input name="email" onChange={handleOnChange} type="email" placeholder="Enter Your Email" required />
+                <input name="name" onBlur={handleOnBlur} placeholder="Enter Your Name" required />
                 <br />
-                <input name="password" onChange={handleOnChange} className="mt-2" type="password" placeholder="Enter Your Password" required />
+                <input name="email" onBlur={handleOnBlur} className="mt-2" type="email" placeholder="Enter Your Email" required />
                 <br />
-                <input name="password2" onChange={handleOnChange} className="mt-2" type="password" placeholder="ReType Your Password" required />
+                <input name="password" onBlur={handleOnBlur} className="mt-2" type="password" placeholder="Enter Your Password" required />
+                <br />
+                <input name="password2" onBlur={handleOnBlur} className="mt-2" type="password" placeholder="ReType Your Password" required />
                 <br />
                 <p className="text-danger"></p>
-                <button type="submit" className="mt-2">Register</button>
+                <Button type="submit" className="mt-2" variant="dark">REGISTER</Button>
                 <br /><br />
                 <NavLink style={{ textDecoration: 'none' }} to='/login'><p className="text-primary">already have an account ?</p></NavLink>
             </form>}

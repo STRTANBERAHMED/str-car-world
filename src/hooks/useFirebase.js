@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import initializeFirebase from "../components/Firebase/firebase.init";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, signOut } from "firebase/auth";
 
 // initialize firebase app
 initializeFirebase();
@@ -8,14 +8,24 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
+    const [admin, setAdmin] = useState(false);
 
     const auth = getAuth();
 
-    const registerUser = (email, password) => {
+    const registerUser = (email, password, name, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setAuthError('');
+                const newUser = { email, displayName: name }
+                setUser(newUser);
+                // send name to firebase after creation
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                }).catch((error) => {
+                });
+                history.replace('/');
             })
             .catch((error) => {
                 setAuthError(error.message);
@@ -50,6 +60,12 @@ const useFirebase = () => {
         return () => unsubscribed;
     }, [])
 
+    useEffect(() => {
+        fetch(`https://car-world-97a21.web.app/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
+
     const logOut = () => {
         setIsLoading(true);
         signOut(auth).then(() => {
@@ -62,6 +78,7 @@ const useFirebase = () => {
 
     return {
         user,
+        admin,
         isLoading,
         authError,
         registerUser,

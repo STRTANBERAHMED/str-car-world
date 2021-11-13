@@ -24,7 +24,9 @@ const AddService = () => {
                 <input {...register("season")} placeholder="Model" required />
                 <input type="number" {...register("price")} placeholder="Price" required />
                 <input {...register("picture")} placeholder="Picture url" required />
-                <input type="submit" />
+                <input type="submit"
+                    value="Order Now"
+                    className="btn btn-dark w-25" />
             </form>
         </div>
     );

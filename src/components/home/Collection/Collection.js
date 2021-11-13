@@ -2,13 +2,13 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Card } from 'react-bootstrap';
 
-const Service = (props) => {
-    const { _id, name, picture, season, price } = props.service || {}
+const Collection = (props) => {
+    const { _id, name, picture, season, price } = props.item || {}
 
     // const history = useHistory()
 
     // const handleDetails = (_id) => {
-    //     const uri = `/manageOrders/${_id}`
+    //     const uri = `/PlaceOrders/${_id}`
     //     history.push(uri)
     // }
 
@@ -35,4 +35,4 @@ const Service = (props) => {
     );
 };
 
-export default Service;
+export default Collection;

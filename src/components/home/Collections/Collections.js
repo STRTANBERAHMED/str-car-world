@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from 'react';
-// import Appbar from '../../shared/navbar/Appbar/Appbar';
-import Service from '../../home/Service/Service';
+import Collection from '../Collection/Collection';
 
-const Explore = () => {
 
-    const [services, setServices] = useState([])
+const Collections = () => {
+
+    const [items, setItems] = useState([])
 
     useEffect(() => {
         fetch('https://sleepy-refuge-74086.herokuapp.com/services')
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => setItems(data.slice(0, 6)))
     }, [])
 
     return (
         <div>
-            {/* <Appbar></Appbar> */}
             <div className="container my-3">
                 <div className="text-center">
                     <h1>Our Collections</h1>
                 </div>
                 <div className="row">
                     {
-                        services.map(service =>
-                            <Service
-                                key={service._id}
-                                service={service}
-                            ></Service>)
+                        items.map(item =>
+                            <Collection
+                                key={item._id}
+                                item={item}
+                            ></Collection>)
                     }
                 </div>
             </div>
@@ -33,4 +32,4 @@ const Explore = () => {
     );
 };
 
-export default Explore;
+export default Collections;

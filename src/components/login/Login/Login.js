@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import { Button } from 'react-bootstrap';
+import './Login.css';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({});
@@ -23,14 +25,14 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className="login">
             <h1>Login</h1>
             <form onSubmit={handleLoginSubmit}>
                 <input name="email" onChange={handleOnChange} type="email" placeholder="Email" />
                 <br />
                 <input name="password" onChange={handleOnChange} className="mt-2" type="password" placeholder="Password" />
                 <br />
-                <button type="submit" className="mt-2">LOGIN</button>
+                <Button type="submit" className="mt-2" variant="dark">LOGIN</Button>
                 <br />
                 <NavLink style={{ textDecoration: 'none' }} to='/register'><p className="text-primary">are you new please register</p></NavLink>
                 {isLoading && <div className="spinner-border" role="status">
