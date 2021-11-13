@@ -61,7 +61,7 @@ const useFirebase = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`https://car-world-97a21.web.app/${user.email}`)
+        fetch(`https://sleepy-refuge-74086.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])

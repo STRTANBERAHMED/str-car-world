@@ -9,14 +9,14 @@ const MyOrders = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        fetch(`https://car-world-97a21.web.app/myOrders/${user.email}`)
+        fetch(`https://sleepy-refuge-74086.herokuapp.com/myOrders/${user.email}`)
             .then((res) => res.json())
             .then((data) => setMyOrders(data));
     })
 
     const handleDelete = (id) => {
 
-        fetch(`https://car-world-97a21.web.app/deleteOrder/${id}`, {
+        fetch(`https://sleepy-refuge-74086.herokuapp.com/deleteOrder/${id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())

@@ -11,14 +11,14 @@ const MangeOrder = () => {
     };
     console.log(status);
     useEffect(() => {
-        fetch("https://car-world-97a21.web.app/allOrders")
+        fetch("https://sleepy-refuge-74086.herokuapp.com/allOrders")
             .then((res) => res.json())
             .then((data) => setOrders(data));
     }, []);
 
     //     // const status = "apporved";
     const handleUpdate = (id) => {
-        fetch(`https://car-world-97a21.web.app/updateStatus/${id}`, {
+        fetch(`https://sleepy-refuge-74086.herokuapp.com/updateStatus/${id}`, {
             method: "PUT",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ status }),

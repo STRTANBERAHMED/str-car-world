@@ -10,7 +10,7 @@ const PlaceOrders = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        fetch(`https://car-world-97a21.web.app/singleProduct/${productId}`)
+        fetch(`https://sleepy-refuge-74086.herokuapp.com/singleProduct/${productId}`)
             .then((res) => res.json())
             .then((data) => setProduct(data));
     }, [])
@@ -21,7 +21,7 @@ const PlaceOrders = () => {
     const onSubmit = data => {
         data.status = "pending";
 
-        fetch("https://car-world-97a21.web.app/confirmOrder", {
+        fetch("https://sleepy-refuge-74086.herokuapp.com/confirmOrder", {
             method: "post",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),

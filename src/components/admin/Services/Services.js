@@ -7,7 +7,7 @@ const Services = () => {
     const [control, setControl] = useState(false);
 
     useEffect(() => {
-        fetch("https://car-world-97a21.web.app/services")
+        fetch("https://sleepy-refuge-74086.herokuapp.com/services")
             .then((res) => res.json())
             .then((data) => setServices(data));
     }, []);
@@ -16,7 +16,7 @@ const Services = () => {
 
     const handleDelete = (id) => {
 
-        fetch(`https://car-world-97a21.web.app/deleteService/${id}`, {
+        fetch(`https://sleepy-refuge-74086.herokuapp.com/deleteService/${id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
