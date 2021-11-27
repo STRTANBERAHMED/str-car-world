@@ -14,3 +14,8 @@ We collect best cars from best companies from all over the world.
 Our customers are fully satisfied about our str car world. We already sell more 1000 car.
 # `Repairing Warranty`
 Our every car have minimum 2 year warranty. In those 2 years if something happens to your car than we will repair that free.
+# `Overview`
+* A fully functional full-stack web application.
+* It’s an e-commerce project, users can purchase any car based on their preference. When any user clicks the buy now button page will her/him on the login page. If she/he doesn’t create an account yet then they should go to the registration page. After the registration/login, they can place their orders and they also can manage their orders.
+It’s fully responsive for mobile and computer. It has a customized admin panel where the admin can add a product, remove a product, approve the product, and make an admin.
+* Used Tools: VS Code,  React Js, Bootstrap, Firebase, Node Js, MongoDB, Heroku.
